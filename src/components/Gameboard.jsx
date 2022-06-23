@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Gameboard = () => {
+const Gameboard = ({ winner, gameState }) => {
   return (
     <div className="game-container">
       <div className="game-container-header">
         <button className="game-container-header-playButton">Play</button>
-        <h3 className="game-container-header-winnerText">winner</h3>
+        <h3 className="game-container-header-winnerText">{winner}</h3>
         <button className="game-container-header-randomButton">
           Place randomly
         </button>
