@@ -14,4 +14,12 @@ const makeBoard = () => {
 
 const makeAIMove = () => {};
 
-export { makeAIMove, makeBoard };
+// Get random number
+const randomInt = () => {
+  return Math.ceil(Math.random() * BOARD_SIZE);
+};
+
+const checkPlacement = (ship) => {
+  return true;
+};
+export { makeAIMove, makeBoard, randomInt, checkPlacement };

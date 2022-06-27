@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import './sass/main.scss';
 import Header from './components/Header';
-import Gameboard from './components/Gameboard';
+import Game from './components/Game';
 import { Player } from './Player';
+import { Gameboard } from './GameboardFunc';
 
 const App = () => {
   const player1 = Player('user');
   const player2 = Player('computer');
   const [winner, setWinner] = useState('');
   const [gameState, setGameState] = useState('placement');
+  const gameboard = Gameboard();
 
   return (
     <div className="main">
       <Header />
-      <Gameboard winner={winner} gameState={gameState} />
+      <Game winner={winner} gameState={gameState} />
+      {gameboard.placeShipsAtRandom()}
     </div>
   );
 };

@@ -59,6 +59,10 @@
     justify-content: space-evenly;
     align-items: center;
     padding: 1rem;
+
+    @media (max-width: 740px) {
+      flex-direction: column;
+    }
   }
   // User side
   &-user {
@@ -73,6 +77,7 @@
 
   &-title {
     font-size: 2rem;
+    margin-top: 1rem;
   }
 
   &-playground {
