@@ -20,6 +20,18 @@ const randomInt = () => {
 };
 
 const checkPlacement = (ship) => {
+  ship.coords.forEach((coords) => {
+    if (
+      (coords.row < 0) |
+      (coords.row >= 10) |
+      (coords.col < 0) |
+      (coords.col >= 10)
+    )
+      return false;
+  });
+
+  console.log(ship.getDirection());
+
   return true;
 };
 export { makeAIMove, makeBoard, randomInt, checkPlacement };

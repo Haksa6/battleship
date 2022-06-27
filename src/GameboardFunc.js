@@ -30,20 +30,20 @@ export const Gameboard = () => {
 
   const placeShip = (ship) => {
     if (checkPlacement(ship)) {
-      ship.coords.map((coords) => {
-        console.log(coords.row);
-        console.log(coords.col);
-      });
+      // ship.coords.forEach((coords) => {
+      //   gameboard[coords.row][coords.col] = 'S';
+      // });
     }
   };
 
   const placeShipsAtRandom = () => {
-    const gameboard = makeBoard();
     // New array to hold ships and be later pushed to the main ships array
     const newShips = createShips();
     for (const ship in newShips) {
       placeShip(newShips[ship]);
     }
+
+    console.log(gameboard);
   };
 
   return {
