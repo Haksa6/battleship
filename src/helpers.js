@@ -16,8 +16,10 @@ const makeAIMove = () => {};
 
 // Get random number
 const randomInt = () => {
-  return Math.ceil(Math.random() * BOARD_SIZE);
+  return Math.floor(Math.random() * BOARD_SIZE);
 };
+
+const checkAdjacentCell = (ship) => {};
 
 const checkPlacement = (ship) => {
   ship.coords.forEach((coords) => {
@@ -30,7 +32,15 @@ const checkPlacement = (ship) => {
       return false;
   });
 
-  console.log(ship.getDirection());
+  if (ship.getDirection()) {
+    if (ship.getSize() + ship.getStartCoords().col > 10) return false;
+  }
+
+  if (!ship.getDirection()) {
+    if (ship.getSize() + ship.getStartCoords().row > 10) return false;
+  }
+
+  checkAdjacentCell(ship);
 
   return true;
 };

@@ -4,9 +4,11 @@ const createCoordsForShip = (row, col, size, direction) => {
 
   //Add the size for the full coords
   //Direction true = horizontal and direction false = vertical
-  if (direction) col += size - 1;
-  if (!direction) row += size - 1;
-  coords.push({ row, col });
+  for (let i = 0; i < size - 1; i++) {
+    if (direction) col++;
+    if (!direction) row++;
+    coords.push({ row, col });
+  }
 
   return coords;
 };
@@ -17,7 +19,7 @@ export const Ship = (row, col, size = 1, direction = true) => {
   //Counts hits until it's the size of the ship
   const hit = () => hits++;
   const isSunk = () => hits === size;
-  const getStartCoords = () => coords;
+  const getStartCoords = () => coords[0];
   const getSize = () => size;
   const getDirection = () => direction;
   return {
