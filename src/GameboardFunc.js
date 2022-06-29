@@ -1,5 +1,4 @@
 //Board funtions
-import React from 'react';
 import { checkPlacement, makeBoard, randomInt } from './helpers';
 import { Ship } from './Ship';
 
@@ -24,7 +23,7 @@ export const Gameboard = () => {
     return false;
   };
 
-  const placeShipsAtRandom = () => {
+  const placeShipsAtBoard = () => {
     // New array to hold ships and be later pushed to the main ships array
     const shipArray = {
       ship1: { amount: 1, size: 1 },
@@ -41,7 +40,8 @@ export const Gameboard = () => {
           randomInt(),
           randomInt(),
           size,
-          Math.random() > 0.5
+          Math.random() > 0.5,
+          `${name} id-${amount}`
         );
         if (placeShip(newShip)) {
           amount--;
@@ -51,8 +51,16 @@ export const Gameboard = () => {
     // console.log(gameboard);
   };
 
+  const randomPlaceShips = () => {
+    gameboard = makeBoard();
+    ships = [];
+    placeShipsAtBoard();
+  };
+
   return {
-    placeShipsAtRandom,
+    placeShipsAtBoard,
+    randomPlaceShips,
     getShips,
+    gameboard,
   };
 };

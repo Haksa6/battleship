@@ -118,10 +118,16 @@
       &-cell {
         border: solid 1px black;
         cursor: crosshair;
-        background: lightblue;
+        background: #f1f3f5;
+        transition: 100ms ease-in-out;
         &:hover {
           transform: scale(1.02);
-          border: solid 2px red;
+          background-color: #f84e4e;
+        }
+        &-ship {
+          border: solid 1px blue;
+          cursor: crosshair;
+          background: blue;
         }
       }
     }

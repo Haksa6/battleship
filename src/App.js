@@ -8,10 +8,9 @@ import { Gameboard } from './GameboardFunc';
 const App = () => {
   const player1 = Player('user');
   const player2 = Player('computer');
-  const [winner, setWinner] = useState('');
+  const [winner, setWinner] = useState(null);
   const [gameState, setGameState] = useState('placement');
   const gameboard = Gameboard();
-
   return (
     <div className="main">
       <Header />

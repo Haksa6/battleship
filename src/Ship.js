@@ -13,7 +13,7 @@ const createCoordsForShip = (row, col, size, direction) => {
   return coords;
 };
 
-export const Ship = (row, col, size = 1, direction = true) => {
+export const Ship = (row, col, size = 1, direction = true, id) => {
   let hits = 0;
   const coords = createCoordsForShip(row, col, size, direction);
   //Counts hits until it's the size of the ship
@@ -22,6 +22,7 @@ export const Ship = (row, col, size = 1, direction = true) => {
   const getStartCoords = () => coords[0];
   const getSize = () => size;
   const getDirection = () => direction;
+  const getShipID = () => id;
   return {
     coords,
     getStartCoords,
@@ -29,5 +30,6 @@ export const Ship = (row, col, size = 1, direction = true) => {
     isSunk,
     getSize,
     getDirection,
+    getShipID,
   };
 };
