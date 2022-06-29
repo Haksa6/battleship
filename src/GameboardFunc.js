@@ -8,6 +8,7 @@ const BOARD_SIZE = 10;
 export const Gameboard = () => {
   const gameboard = makeBoard();
   const ships = [];
+  const getShips = () => ships;
 
   // Different ship functions
 
@@ -26,8 +27,8 @@ export const Gameboard = () => {
   const placeShipsAtRandom = () => {
     // New array to hold ships and be later pushed to the main ships array
     const shipArray = {
-      ship1: { amount: 4, size: 1 },
-      ship2: { amount: 3, size: 2 },
+      ship1: { amount: 1, size: 1 },
+      ship2: { amount: 2, size: 2 },
       ship3: { amount: 2, size: 3 },
       ship4: { amount: 1, size: 4 },
     };
@@ -47,11 +48,11 @@ export const Gameboard = () => {
         }
       }
     });
-
-    console.log(gameboard);
+    // console.log(gameboard);
   };
 
   return {
     placeShipsAtRandom,
+    getShips,
   };
 };

@@ -1,15 +1,19 @@
 import React from 'react';
 import { Gameboard } from './GameboardFunc';
 
-export const Player = (side) => {
+const Player = (side) => {
   const gameboard = Gameboard();
-  const getSide = () => side;
-  const isWinner = false;
 
-  const getWinner = () => isWinner;
+  const hasLost = () => {
+    return gameboard.getShips().every((ship) => ship.isSunk());
+  };
+
+  const getSide = () => side;
   return {
     gameboard,
     getSide,
-    getWinner,
+    hasLost,
   };
 };
+
+export default Player;

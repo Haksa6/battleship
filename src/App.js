@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './sass/main.scss';
 import Header from './components/Header';
 import Game from './components/Game';
-import { Player } from './Player';
+import Player from './Player';
 import { Gameboard } from './GameboardFunc';
 
 const App = () => {
@@ -16,7 +16,6 @@ const App = () => {
     <div className="main">
       <Header />
       <Game winner={winner} gameState={gameState} />
-      {gameboard.placeShipsAtRandom()}
     </div>
   );
 };
