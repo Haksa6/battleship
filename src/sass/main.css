@@ -293,7 +293,6 @@ header {
 }
 
 .game-container-playground-game-cell-ship {
-  border: solid 1px blue;
   cursor: crosshair;
   background: blue;
 }

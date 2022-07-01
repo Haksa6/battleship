@@ -1,6 +1,14 @@
 import React from 'react';
 
-const EnemyBoard = () => {
+const EnemyBoard = ({ board }) => {
+  const placeShipsAndCells = () => {
+    for (const i in board) {
+      for (const j in board) {
+        console.log(board[i][j]);
+      }
+    }
+  };
+
   return (
     <div className="game-container-computer">
       <h2 className="game-container-title">Enemy</h2>
@@ -29,16 +37,11 @@ const EnemyBoard = () => {
           <div className="game-container-playground-column-letters">I</div>
           <div className="game-container-playground-column-letters">J</div>
         </div>
-        <div className="game-container-playground-game">
-          <div className="game-container-playground-game-cell-ship"></div>
-          <div className="game-container-playground-game-cell"></div>
-          <div className="game-container-playground-game-cell"></div>
-          <div className="game-container-playground-game-cell"></div>
-        </div>
+        <div className="game-container-playground-game"></div>
+        {placeShipsAndCells()}
       </div>
     </div>
   );
-  dasdsadas;
 };
 
 export default EnemyBoard;

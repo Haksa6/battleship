@@ -5,8 +5,9 @@ import { Ship } from './Ship';
 const BOARD_SIZE = 10;
 
 export const Gameboard = () => {
-  const gameboard = makeBoard();
-  const ships = [];
+  let gameboard = makeBoard();
+  let ships = [];
+
   const getShips = () => ships;
 
   // Different ship functions
@@ -48,7 +49,6 @@ export const Gameboard = () => {
         }
       }
     });
-    // console.log(gameboard);
   };
 
   const randomPlaceShips = () => {
@@ -56,7 +56,6 @@ export const Gameboard = () => {
     ships = [];
     placeShipsAtBoard();
   };
-
   return {
     placeShipsAtBoard,
     randomPlaceShips,

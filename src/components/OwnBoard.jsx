@@ -1,6 +1,6 @@
 import React from 'react';
 
-const OwnBoard = () => {
+const OwnBoard = ({ board }) => {
   return (
     <div className="game-container-user">
       <h2 className="game-container-title">You</h2>

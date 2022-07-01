@@ -1,5 +1,5 @@
 import { Ship } from '../Ship';
-import { checkPlacement } from '../helpers';
+import { checkPlacement, randomInt } from '../helpers';
 
 describe('Ship helper functions', () => {
   let shipTooBigHorizontal;
@@ -16,5 +16,16 @@ describe('Ship helper functions', () => {
 
   it('Return true if ship is right size', () => {
     expect(checkPlacement(shipRightSize)).toBe(true);
+  });
+});
+
+describe('Board helper functions', () => {
+  it('Be between the right range', () => {});
+});
+
+describe('Random number function', () => {
+  it('Be between the right range', () => {
+    expect(randomInt()).toBeGreaterThanOrEqual(0);
+    expect(randomInt()).toBeLessThanOrEqual(9);
   });
 });
