@@ -1,6 +1,16 @@
 import React from 'react';
 
-const OwnBoard = ({ board }) => {
+import Cell from './Cell';
+
+const OwnBoard = ({ board, ships }) => {
+  // Render cells into the board
+  let boardCells = [];
+  for (const i in board) {
+    for (const j in board) {
+      boardCells.push(<Cell key={`${i}${j}`} />);
+    }
+  }
+
   return (
     <div className="game-container-user">
       <h2 className="game-container-title">You</h2>
@@ -29,7 +39,7 @@ const OwnBoard = ({ board }) => {
           <div className="game-container-playground-column-letters">I</div>
           <div className="game-container-playground-column-letters">J</div>
         </div>
-        <div className="game-container-playground-game"></div>
+        <div className="game-container-playground-game">{boardCells}</div>
       </div>
     </div>
   );

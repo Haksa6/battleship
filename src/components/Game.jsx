@@ -12,6 +12,7 @@ const Game = () => {
   const [gameState, setGameState] = useState('placement');
   const [ownBoard, setOwnBoard] = useState([]);
   const [enemyBoard, setEnemyBoard] = useState([]);
+  const [ships, setShips] = useState([]);
 
   const placeShipsOnStart = () => {
     playerUser.gameboard.placeShipsAtBoard();
@@ -19,15 +20,31 @@ const Game = () => {
 
     setOwnBoard(playerUser.gameboard.gameboard);
     setEnemyBoard(playerEnemy.gameboard.gameboard);
+    setShips(
+      playerUser.gameboard.getShips().map((ship) => ({
+        ...ship,
+      }))
+    );
   };
-
   useEffect(() => placeShipsOnStart(), []);
+
+  const handleRandomize = () => {
+    if (gameState === 'placement') {
+      playerUser.gameboard.randomPlaceShips();
+      setShips(
+        playerUser.gameboard.getShips().map((ship) => ({
+          ...ship,
+        }))
+      );
+      console.log(ships[0].coords[0]);
+    }
+  };
 
   return (
     <div className="game-container">
-      <GameInfo winner={winner} />
+      <GameInfo winner={winner} handleRandomize={handleRandomize} />
       <div className="game-container-grids">
-        <OwnBoard board={ownBoard} />
+        <OwnBoard board={ownBoard} ships={ships} />
         <EnemyBoard board={enemyBoard} />
       </div>
     </div>

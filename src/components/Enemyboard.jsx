@@ -1,13 +1,13 @@
 import React from 'react';
+import Cell from './Cell';
 
 const EnemyBoard = ({ board }) => {
-  const placeShipsAndCells = () => {
-    for (const i in board) {
-      for (const j in board) {
-        console.log(board[i][j]);
-      }
+  let boardCells = [];
+  for (const i in board) {
+    for (const j in board) {
+      boardCells.push(<Cell key={`${i}${j}`} />);
     }
-  };
+  }
 
   return (
     <div className="game-container-computer">
@@ -37,8 +37,7 @@ const EnemyBoard = ({ board }) => {
           <div className="game-container-playground-column-letters">I</div>
           <div className="game-container-playground-column-letters">J</div>
         </div>
-        <div className="game-container-playground-game"></div>
-        {placeShipsAndCells()}
+        <div className="game-container-playground-game">{boardCells}</div>
       </div>
     </div>
   );
