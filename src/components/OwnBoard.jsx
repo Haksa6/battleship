@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import Cell from './Cell';
+import Ship from './Ship';
 
 const OwnBoard = ({ board, ships }) => {
   // Render cells into the board
+
   let boardCells = [];
   for (const i in board) {
     for (const j in board) {
-      boardCells.push(<Cell key={`${i}${j}`} />);
+      if (board[i][j] === 'Ship') {
+        boardCells.push(<Ship key={`${i}${j}`} />);
+      } else {
+        boardCells.push(<Cell key={`${i}${j}`} />);
+      }
     }
   }
 
@@ -39,7 +45,10 @@ const OwnBoard = ({ board, ships }) => {
           <div className="game-container-playground-column-letters">I</div>
           <div className="game-container-playground-column-letters">J</div>
         </div>
-        <div className="game-container-playground-game">{boardCells}</div>
+        <div className="game-container-playground-game">
+          {boardCells}
+          {}
+        </div>
       </div>
     </div>
   );
