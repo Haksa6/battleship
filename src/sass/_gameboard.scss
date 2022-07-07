@@ -114,11 +114,12 @@
       grid-template-rows: repeat(10, 32px);
       position: relative;
       box-shadow: 0 0 15px 5px lightblue;
+
       &-ship {
         border: 2px solid #00f;
         z-index: 2;
         position: absolute;
-        background: rgba(0, 0, 255, 0.5);
+        background: rgba(0, 0, 255, 0.4);
       }
       &-cell {
         border: solid 1px black;
