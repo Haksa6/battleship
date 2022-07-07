@@ -1,21 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import Cell from './Cell';
 import Ship from './Ship';
 
-const OwnBoard = ({ board, ships }) => {
-  // Render cells into the board
-
-  let boardCells = [];
-  for (const i in board) {
-    for (const j in board) {
-      if (board[i][j] === 'Ship') {
-        boardCells.push(<Ship key={`${i}${j}`} />);
-      } else {
-        boardCells.push(<Cell key={`${i}${j}`} />);
-      }
-    }
-  }
+const OwnBoard = ({ board, ships, gameState, side }) => {
+  const renderCells = () =>
+    board.map((row, i) =>
+      row.map((element, j) => (
+        <Cell key={`${i}${j}`} gameState={gameState} side={side} />
+      ))
+    );
+  //
+  const renderShips = () =>
+    ships.map((ship) => <Ship key={ship.getShipID()} ship={ship} />);
 
   return (
     <div className="game-container-user">
@@ -46,8 +43,8 @@ const OwnBoard = ({ board, ships }) => {
           <div className="game-container-playground-column-letters">J</div>
         </div>
         <div className="game-container-playground-game">
-          {boardCells}
-          {}
+          {renderCells()}
+          {renderShips()}
         </div>
       </div>
     </div>

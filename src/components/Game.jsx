@@ -44,8 +44,13 @@ const Game = () => {
     <div className="game-container">
       <GameInfo winner={winner} handleRandomize={handleRandomize} />
       <div className="game-container-grids">
-        <OwnBoard board={ownBoard} ships={ships} />
-        <EnemyBoard board={enemyBoard} />
+        <OwnBoard
+          board={ownBoard}
+          ships={ships}
+          gameState={gameState}
+          side={playerUser.getSide()}
+        />
+        <EnemyBoard board={enemyBoard} side={playerEnemy.getSide()} />
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import GameboardFunc from '../GameboardFunc';
+import { Ship } from '../Ship';
 
 describe('Gameboard', () => {
   let ship;
   let shipDirectionVertical;
 
   beforeEach(() => {
-    ship = new Ship(1, 1, 1);
-    shipDirectionVertical = new Ship(1, 1, 1, true);
+    ship = Ship(1, 1, 1);
+    shipDirectionVertical = Ship(1, 1, 1, true);
   });
 
   it('Correct sizing for the ship', () => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Gameboard } from './GameboardFunc';
 
 const Player = (side) => {

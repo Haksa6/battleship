@@ -1,13 +1,11 @@
 import React from 'react';
 import Cell from './Cell';
 
-const EnemyBoard = ({ board }) => {
-  let boardCells = [];
-  for (const i in board) {
-    for (const j in board) {
-      boardCells.push(<Cell key={`${i}${j}`} />);
-    }
-  }
+const EnemyBoard = ({ board, side }) => {
+  const renderCells = () =>
+    board.map((row, i) =>
+      row.map((element, j) => <Cell key={`${i}${j}`} side={side} />)
+    );
 
   return (
     <div className="game-container-computer">
@@ -37,7 +35,7 @@ const EnemyBoard = ({ board }) => {
           <div className="game-container-playground-column-letters">I</div>
           <div className="game-container-playground-column-letters">J</div>
         </div>
-        <div className="game-container-playground-game">{boardCells}</div>
+        <div className="game-container-playground-game">{renderCells()}</div>
       </div>
     </div>
   );

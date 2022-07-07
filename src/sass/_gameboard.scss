@@ -114,21 +114,33 @@
       grid-template-rows: repeat(10, 32px);
       position: relative;
       box-shadow: 0 0 15px 5px lightblue;
-
+      &-ship {
+        border: 2px solid #00f;
+        z-index: 2;
+        position: absolute;
+        background: rgba(0, 0, 255, 0.5);
+      }
       &-cell {
         border: solid 1px black;
         cursor: crosshair;
         background: #f1f3f5;
         transition: 100ms ease-in-out;
-        &:hover {
-          transform: scale(1.02);
-          background-color: #f84e4e;
-        }
-        &-ship {
-          border: 2px solid #00f;
-          background: rgba(0, 0, 255, 0.05);
+        &-placement {
+          border: solid 1px black;
+          background: #f1f3f5;
+          transition: 100ms ease-in-out;
+          &-hover {
+            box-shadow: inset 0px 0px 10px rgb(157, 255, 0);
+          }
         }
       }
     }
+  }
+}
+
+.enemy {
+  &:hover {
+    transform: scale(1.02);
+    background-color: #f84e4e;
   }
 }
