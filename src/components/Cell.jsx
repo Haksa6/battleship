@@ -1,22 +1,27 @@
 import React from 'react';
 
-const Cell = ({ gameState, side, placeShip }) => {
+const Cell = ({ gameState, side, i, j, onPlaceShip }) => {
   if (gameState === 'placement' && side === 'user')
     return (
       <div
+        data-coord={[i, j]}
         className="game-container-playground-game-cell-placement"
         onDragOver={(e) => {
           e.preventDefault();
         }}
         onDragEnter={(e) => {
           e.preventDefault();
-          e.target.classlist.add('-hover');
+          e.target.classList.toggle(
+            'game-container-playground-game-cell-placement-hover'
+          );
         }}
         onDragLeave={(e) => {
           e.preventDefault();
-          e.target.classlist.remove('-hover');
+          e.target.classList.toggle(
+            'game-container-playground-game-cell-placement-hover'
+          );
+          onPlaceShip(e);
         }}
-        onDrop={(e) => placeShip(e)}
       ></div>
     );
   if (side === 'enemy')

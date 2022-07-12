@@ -17,8 +17,12 @@ const Ship = ({ ship }) => {
 
   return (
     <div
+      draggable
       style={shipStyle}
       className="game-container-playground-game-ship"
+      onDragStart={(e) => {
+        e.dataTransfer.setData('ship', e.target.dataset.ship);
+      }}
     ></div>
   );
 };

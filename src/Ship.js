@@ -14,6 +14,7 @@ const createCoordsForShip = (row, col, size, direction) => {
 };
 
 export const Ship = (row, col, size = 1, direction = true, id) => {
+  //direction true = horizontal, false = vertical
   let hits = 0;
   const coords = createCoordsForShip(row, col, size, direction);
   //Counts hits until it's the size of the ship

@@ -3,11 +3,18 @@ import React from 'react';
 import Cell from './Cell';
 import Ship from './Ship';
 
-const OwnBoard = ({ board, ships, gameState, side }) => {
+const OwnBoard = ({ board, ships, gameState, side, onPlaceShip }) => {
   const renderCells = () =>
     board.map((row, i) =>
       row.map((element, j) => (
-        <Cell key={`${i}${j}`} gameState={gameState} side={side} />
+        <Cell
+          key={`${i}${j}`}
+          gameState={gameState}
+          side={side}
+          i={i}
+          j={j}
+          onPlaceShip={onPlaceShip}
+        />
       ))
     );
   //

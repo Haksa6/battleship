@@ -12,6 +12,8 @@ export const Gameboard = () => {
 
   // Different ship functions
 
+  const moveShip = (ship, x, y) => {};
+
   const placeShip = (ship) => {
     if (checkPlacement(ship)) {
       ship.coords.forEach((coord) => {

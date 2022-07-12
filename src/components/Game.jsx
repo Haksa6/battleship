@@ -36,8 +36,15 @@ const Game = () => {
           ...ship,
         }))
       );
-      console.log(ships[0].coords[0]);
+      console.log(ships[0].coords);
     }
+  };
+
+  const onPlaceShip = (e) => {
+    console.log(
+      e.target.dataset.coord.split(',')[0],
+      e.target.dataset.coord.split(',')[1]
+    );
   };
 
   return (
@@ -49,6 +56,7 @@ const Game = () => {
           ships={ships}
           gameState={gameState}
           side={playerUser.getSide()}
+          onPlaceShip={onPlaceShip}
         />
         <EnemyBoard board={enemyBoard} side={playerEnemy.getSide()} />
       </div>
