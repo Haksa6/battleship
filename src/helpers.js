@@ -25,10 +25,10 @@ const checkPlacement = (ship) => {
   //Check all the coords and return false if they dont fit in the board
   ship.coords.forEach((coords) => {
     if (
-      (coords.row < 0) |
-      (coords.row >= 10) |
-      (coords.col < 0) |
-      (coords.col >= 10)
+      coords.row < 0 ||
+      coords.row >= 10 ||
+      coords.col < 0 ||
+      coords.col >= 10
     )
       return false;
   });
@@ -44,7 +44,6 @@ const checkPlacement = (ship) => {
   }
 
   //The ship shouldn't have any ships around in 1 cell radius
-  checkAdjacentCell(ship);
 
   return true;
 };

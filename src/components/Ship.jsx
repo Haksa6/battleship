@@ -18,6 +18,7 @@ const Ship = ({ ship }) => {
   return (
     <div
       draggable
+      data-ship={ship.getShipID()}
       style={shipStyle}
       className="game-container-playground-game-ship"
       onDragStart={(e) => {

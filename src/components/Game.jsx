@@ -41,10 +41,13 @@ const Game = () => {
   };
 
   const onPlaceShip = (e) => {
-    console.log(
-      e.target.dataset.coord.split(',')[0],
-      e.target.dataset.coord.split(',')[1]
-    );
+    const shipID = e.dataTransfer.getData('ship');
+    const ship = ships.find((s) => s.getShipID() === shipID);
+    const x = e.target.dataset.coord.split(',')[0];
+    const y = e.target.dataset.coord.split(',')[1];
+
+    const newShip = playerUser.gameboard.moveShip(ship, x, y);
+    setShips(ships.map((s) => (s.getShipID() !== shipID ? s : { ...newShip })));
   };
 
   return (

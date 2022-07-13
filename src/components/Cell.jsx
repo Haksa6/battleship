@@ -20,6 +20,11 @@ const Cell = ({ gameState, side, i, j, onPlaceShip }) => {
           e.target.classList.toggle(
             'game-container-playground-game-cell-placement-hover'
           );
+        }}
+        onDrop={(e) => {
+          e.target.classList.toggle(
+            'game-container-playground-game-cell-placement-hover'
+          );
           onPlaceShip(e);
         }}
       ></div>
