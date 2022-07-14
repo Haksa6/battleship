@@ -23,6 +23,15 @@ const Ship = ({ ship }) => {
       className="game-container-playground-game-ship"
       onDragStart={(e) => {
         e.dataTransfer.setData('ship', e.target.dataset.ship);
+        e.target.classList.toggle(
+          'game-container-playground-game-ship-dragging'
+        );
+      }}
+      onDragEnd={(e) => {
+        e.dataTransfer.setData('ship', e.target.dataset.ship);
+        e.target.classList.toggle(
+          'game-container-playground-game-ship-dragging'
+        );
       }}
     ></div>
   );

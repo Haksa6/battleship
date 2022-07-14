@@ -41,13 +41,11 @@ const checkPlacement = (ship) => {
 
   //If the ship is horizontal get its size and make sure it fits
   if (ship.getDirection()) {
-    console.log(`here ${size + col} `);
     if (size + col > 10) return false;
   }
 
   //If the ship is vertical get its size and make sure it fits
   if (!ship.getDirection()) {
-    console.log(`here ${size + row} `);
     if (size + row > 10) return false;
   }
 

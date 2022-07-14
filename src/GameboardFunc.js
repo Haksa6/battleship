@@ -72,6 +72,7 @@ export const Gameboard = () => {
       placeShip(newShip);
       return newShip;
     }
+    return undefined;
   };
 
   return {

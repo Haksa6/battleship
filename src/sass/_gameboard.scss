@@ -121,6 +121,11 @@
         cursor: move;
         position: absolute;
         background: linear-gradient(315deg, #2a2a72 10%, #009ffd 74%);
+        transition: all 0.3s;
+        &-dragging {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
       }
       &-cell {
         border: solid 1px black;

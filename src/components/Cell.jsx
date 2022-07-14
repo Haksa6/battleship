@@ -11,6 +11,7 @@ const Cell = ({ gameState, side, i, j, onPlaceShip }) => {
         }}
         onDragEnter={(e) => {
           e.preventDefault();
+          console.log(i, j);
           e.target.classList.toggle(
             'game-container-playground-game-cell-placement-hover'
           );
