@@ -23,6 +23,12 @@ const checkAdjacentCell = (ship) => {};
 
 const checkPlacement = (ship) => {
   //Check all the coords and return false if they dont fit in the board
+
+  //Have to convert strings to a number
+  const size = Number(ship.getSize());
+  const col = Number(ship.getStartCoords().col);
+  const row = Number(ship.getStartCoords().row);
+
   ship.coords.forEach((coords) => {
     if (
       coords.row < 0 ||
@@ -35,12 +41,14 @@ const checkPlacement = (ship) => {
 
   //If the ship is horizontal get its size and make sure it fits
   if (ship.getDirection()) {
-    if (ship.getSize() + ship.getStartCoords().col > 10) return false;
+    console.log(`here ${size + col} `);
+    if (size + col > 10) return false;
   }
 
   //If the ship is vertical get its size and make sure it fits
   if (!ship.getDirection()) {
-    if (ship.getSize() + ship.getStartCoords().row > 10) return false;
+    console.log(`here ${size + row} `);
+    if (size + row > 10) return false;
   }
 
   //The ship shouldn't have any ships around in 1 cell radius

@@ -118,6 +118,7 @@
       &-ship {
         border: 2px solid #00f;
         z-index: 2;
+        cursor: move;
         position: absolute;
         background: linear-gradient(315deg, #2a2a72 10%, #009ffd 74%);
       }

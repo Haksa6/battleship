@@ -68,8 +68,10 @@ export const Gameboard = () => {
       ship.getDirection(),
       ship.getShipID()
     );
-    placeShip(newShip);
-    return newShip;
+    if (checkPlacement(newShip)) {
+      placeShip(newShip);
+      return newShip;
+    }
   };
 
   return {

@@ -48,6 +48,7 @@ const Game = () => {
 
     const newShip = playerUser.gameboard.moveShip(ship, x, y);
     setShips(ships.map((s) => (s.getShipID() !== shipID ? s : { ...newShip })));
+    console.log(ships);
   };
 
   return (
