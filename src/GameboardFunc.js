@@ -8,8 +8,8 @@ export const Gameboard = () => {
   let gameboard = makeBoard();
   let ships = [];
 
+  const getGameboard = () => gameboard;
   const getShips = () => ships;
-
   // Different ship functions
 
   const placeShip = (ship) => {
@@ -75,11 +75,42 @@ export const Gameboard = () => {
     return undefined;
   };
 
+  const receiveAttack = (row, col) => {
+    if (gameboard[row][col] !== 'Ship') {
+      gameboard[row][col] = 'Mark';
+      console.log(row, col);
+      return false;
+    }
+
+    let shipFound;
+    //Find the ship in the array
+    for (const ship in ships) {
+      ships[ship].coords.forEach((coord) => {
+        if (coord.row === parseInt(row) && coord.col === parseInt(col)) {
+          console.log('found');
+          shipFound = ships[ship];
+        }
+      });
+    }
+
+    if (shipFound) {
+      shipFound.hit();
+      if (shipFound.isSunk()) {
+        gameboard[row][col] = 'X';
+        return true;
+      }
+      gameboard[row][col] = 'X';
+      return true;
+    }
+  };
+
   return {
     placeShipsAtBoard,
     randomPlaceShips,
     getShips,
     gameboard,
     moveShip,
+    receiveAttack,
+    getGameboard,
   };
 };

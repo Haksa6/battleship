@@ -7,11 +7,17 @@ const Player = (side) => {
     return gameboard.getShips().every((ship) => ship.isSunk());
   };
 
+  const attack = (player, row, col) => {
+    const result = player.gameboard.receiveAttack(row, col);
+    return result !== true;
+  };
+
   const getSide = () => side;
   return {
     gameboard,
     getSide,
     hasLost,
+    attack,
   };
 };
 

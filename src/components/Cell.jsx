@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Cell = ({ gameState, side, i, j, onPlaceShip }) => {
+const Cell = ({ gameState, side, i, j, onPlaceShip, content, playerMove }) => {
   if (gameState === 'placement' && side === 'user')
     return (
       <div
@@ -30,9 +30,28 @@ const Cell = ({ gameState, side, i, j, onPlaceShip }) => {
         }}
       ></div>
     );
-  if (side === 'enemy')
-    return <div className="game-container-playground-game-cell enemy"></div>;
-  return <div className="game-container-playground-game-cell"></div>;
+  if (content === 'X') {
+    <div className="game-container-playground-game-cell-destroyed"></div>;
+  }
+
+  if (content === 'Mark') {
+    <div className="game-container-playground-game-cell-marked"></div>;
+  }
+
+  if (side === 'enemy' && gameState === 'ready')
+    return (
+      <div
+        onClick={playerMove}
+        data-coord={[i, j]}
+        className="game-container-playground-game-cell enemy"
+      ></div>
+    );
+  return (
+    <div
+      data-coord={[i, j]}
+      className="game-container-playground-game-cell"
+    ></div>
+  );
 };
 
 export default Cell;

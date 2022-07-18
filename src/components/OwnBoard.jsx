@@ -14,6 +14,7 @@ const OwnBoard = ({ board, ships, gameState, side, onPlaceShip }) => {
           i={i}
           j={j}
           onPlaceShip={onPlaceShip}
+          content={element}
         />
       ))
     );

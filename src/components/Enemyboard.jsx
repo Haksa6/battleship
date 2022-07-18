@@ -1,10 +1,19 @@
 import React from 'react';
 import Cell from './Cell';
 
-const EnemyBoard = ({ board, side }) => {
+const EnemyBoard = ({ board, side, playerMove, gameState }) => {
   const renderCells = () =>
     board.map((row, i) =>
-      row.map((element, j) => <Cell key={`${i}${j}`} side={side} />)
+      row.map((element, j) => (
+        <Cell
+          key={`${i}${j}`}
+          side={side}
+          i={i}
+          j={j}
+          playerMove={playerMove}
+          gameState={gameState}
+        />
+      ))
     );
 
   return (
