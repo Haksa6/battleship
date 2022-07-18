@@ -31,11 +31,13 @@ const Cell = ({ gameState, side, i, j, onPlaceShip, content, playerMove }) => {
       ></div>
     );
   if (content === 'X') {
-    <div className="game-container-playground-game-cell-destroyed"></div>;
+    return (
+      <div className="game-container-playground-game-cell destroyed">X</div>
+    );
   }
 
   if (content === 'Mark') {
-    <div className="game-container-playground-game-cell-marked"></div>;
+    return <div className="game-container-playground-game-cell marked">•</div>;
   }
 
   if (side === 'enemy' && gameState === 'ready')

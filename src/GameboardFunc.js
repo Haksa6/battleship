@@ -9,6 +9,9 @@ export const Gameboard = () => {
   let ships = [];
 
   const getGameboard = () => gameboard;
+  //Updates the content in the cell for the attackboard
+  const getAttackboard = () =>
+    gameboard.map((row) => row.map((cell) => (cell === 'Ship' ? '' : cell)));
   const getShips = () => ships;
   // Different ship functions
 
@@ -79,7 +82,7 @@ export const Gameboard = () => {
     if (gameboard[row][col] !== 'Ship') {
       gameboard[row][col] = 'Mark';
       console.log(row, col);
-      return false;
+      return true;
     }
 
     let shipFound;
@@ -97,10 +100,10 @@ export const Gameboard = () => {
       shipFound.hit();
       if (shipFound.isSunk()) {
         gameboard[row][col] = 'X';
-        return true;
+        return false;
       }
       gameboard[row][col] = 'X';
-      return true;
+      return false;
     }
   };
 
@@ -112,5 +115,6 @@ export const Gameboard = () => {
     moveShip,
     receiveAttack,
     getGameboard,
+    getAttackboard,
   };
 };

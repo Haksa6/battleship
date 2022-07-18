@@ -55,19 +55,31 @@ const Game = () => {
       );
   };
 
-  const enemyMove = () => {};
+  const enemyMove = () => {
+    const attack = playerEnemy.computerAttack(playerUser);
+    setOwnBoard(playerUser.gameboard.getGameboard());
+    if (playerUser.hasLost()) {
+      setWinner('Enemy won!');
+      return;
+    }
+    if (attack) {
+      enemyMove();
+      return;
+    }
+  };
 
   const playerMove = (e) => {
     const x = e.target.dataset.coord.split(',')[0];
     const y = e.target.dataset.coord.split(',')[1];
 
     const attack = playerUser.attack(playerEnemy, x, y);
-    setEnemyBoard(playerEnemy.gameboard.getGameboard());
+    setEnemyBoard(playerEnemy.gameboard.getAttackboard());
     console.log(enemyBoard);
     if (playerEnemy.hasLost()) {
       setWinner('You won!');
       return;
     }
+    //Turn stays on the player if it hits a ship
     if (attack) {
       return;
     }

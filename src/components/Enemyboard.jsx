@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Cell from './Cell';
 
 const EnemyBoard = ({ board, side, playerMove, gameState }) => {
@@ -12,6 +13,7 @@ const EnemyBoard = ({ board, side, playerMove, gameState }) => {
           j={j}
           playerMove={playerMove}
           gameState={gameState}
+          content={element}
         />
       ))
     );
