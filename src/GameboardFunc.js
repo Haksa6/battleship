@@ -16,7 +16,7 @@ export const Gameboard = () => {
   // Different ship functions
 
   const placeShip = (ship) => {
-    if (checkPlacement(ship)) {
+    if (checkPlacement(ship, gameboard)) {
       ship.coords.forEach((coord) => {
         gameboard[coord.row][coord.col] = 'Ship';
       });
@@ -31,8 +31,8 @@ export const Gameboard = () => {
     // New array to hold ships and be later pushed to the main ships array
     const shipArray = {
       ship1: { amount: 1, size: 1 },
-      ship2: { amount: 2, size: 2 },
-      ship3: { amount: 2, size: 3 },
+      ship2: { amount: 3, size: 2 },
+      ship3: { amount: 3, size: 3 },
       ship4: { amount: 1, size: 4 },
     };
 
