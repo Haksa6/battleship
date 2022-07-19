@@ -19,27 +19,104 @@ const randomInt = () => {
   return Math.floor(Math.random() * BOARD_SIZE);
 };
 
-const checkAdjacentCell = (ship, withShip = true) => {
-  const col = Number(ship.getStartCoords().col);
-  const row = Number(ship.getStartCoords().row);
-  const size = Number(ship.getSize());
+const checkAdjacentCell = (
+  size,
+  row,
+  col,
+  direction,
+  gameboard,
+  withship = true
+) => {
+  const isUndefined = (arr, index1, index2) => {
+    try {
+      return arr[index1][index2] === undefined;
+    } catch (e) {
+      return true;
+    }
+  };
 
-  if (ship.getDirection()) {
+  //if ship is horizontal ----
+  if (direction) {
+    for (let i = -1; i < 2; i++) {
+      if (!isUndefined(gameboard, row + i, col - 1)) {
+        if (gameboard[row + i][col - 1] === 'Ship') return false;
+      }
+    }
+
+    for (let i = col; i < col + size; i++) {
+      console.log('horizontal', i, row, 'size', size);
+      if (!isUndefined(gameboard, row - 1, i)) {
+        if (gameboard[row - 1][i] === 'Ship') {
+          return false;
+        }
+      }
+
+      if (withship) {
+        if (!isUndefined(gameboard, row, i)) {
+          if (gameboard[row][i] === 'Ship') {
+            return false;
+          }
+        }
+      }
+
+      if (!isUndefined(gameboard, row + 1, i)) {
+        if (gameboard[row + 1][i] === 'Ship') {
+          return false;
+        }
+      }
+    }
+
+    for (let i = -1; i < 2; i++) {
+      if (!isUndefined(gameboard, row + i, col + size)) {
+        if (gameboard[row + i][col + size] === 'Ship') return false;
+      }
+    }
   }
 
-  console.log('hey');
+  /*if ship is vertical 
+  |
+  |
+  |
+  */
+  if (!direction) {
+    for (let i = -1; i < 2; i++) {
+      if (!isUndefined(gameboard, row - 1, col + i)) {
+        if (gameboard[row - 1][col + i] === 'Ship') return false;
+      }
+    }
 
-  if (size === 1) {
-    console.log(`Original ---------- ${row} ${col}`);
-    console.log(`+1 row ---------- ${row + 1} ${col}`);
-    console.log(`-1 row ---------- ${row - 1} ${col}`);
-    console.log(`+1 col ---------- ${row} ${col + 1}`);
-    console.log(`-1 col ---------- ${row} ${col - 1}`);
-    console.log(`+1 both ---------- ${row + 1} ${col + 1}`);
-    console.log(`-1 both ---------- ${row - 1} ${col - 1}`);
-    console.log(`+1 row -1 col ---------- ${row + 1} ${col - 1}`);
-    console.log(`-1row +1 col ---------- ${row - 1} ${col + 1}`);
+    for (let i = row; i < row + size; i++) {
+      console.log('vertical', i, col, 'size', size);
+
+      if (!isUndefined(gameboard, i, col - 1)) {
+        if (gameboard[i][col - 1] === 'Ship') {
+          return false;
+        }
+      }
+
+      if (withship) {
+        if (!isUndefined(gameboard, i, col)) {
+          if (gameboard[i][col] === 'Ship') {
+            return false;
+          }
+        }
+      }
+
+      if (!isUndefined(gameboard, i, col + 1)) {
+        if (gameboard[i][col + 1] === 'Ship') {
+          return false;
+        }
+      }
+    }
+
+    for (let i = -1; i < 2; i++) {
+      if (!isUndefined(gameboard, row + size, col + i)) {
+        if (gameboard[row + size][col + i] === 'Ship') return false;
+      }
+    }
   }
+
+  return true;
 };
 
 const checkPlacement = (ship, gameboard) => {
@@ -49,6 +126,7 @@ const checkPlacement = (ship, gameboard) => {
   const size = Number(ship.getSize());
   const col = Number(ship.getStartCoords().col);
   const row = Number(ship.getStartCoords().row);
+  const direction = ship.getDirection();
 
   ship.coords.forEach((coords) => {
     if (
@@ -61,17 +139,19 @@ const checkPlacement = (ship, gameboard) => {
   });
 
   //If the ship is horizontal get its size and make sure it fits
-  if (ship.getDirection()) {
+  if (direction) {
     if (size + col > 10) return false;
   }
 
   //If the ship is vertical get its size and make sure it fits
-  if (!ship.getDirection()) {
+  if (!direction) {
     if (size + row > 10) return false;
   }
-  checkAdjacentCell(ship);
   //The ship shouldn't have any ships around in 1 cell radius
-  return true;
+  //this function went really messy and was a struggle
+  const truth = checkAdjacentCell(size, row, col, direction, gameboard);
+
+  return truth;
 };
 
 export { makeAIMove, makeBoard, randomInt, checkPlacement };
