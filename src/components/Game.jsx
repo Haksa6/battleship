@@ -56,16 +56,18 @@ const Game = () => {
   };
 
   const enemyMove = () => {
-    const attack = playerEnemy.computerAttack(playerUser);
-    setOwnBoard(playerUser.gameboard.getGameboard());
-    if (playerUser.hasLost()) {
-      setWinner('Enemy won!');
-      return;
-    }
-    if (attack) {
-      enemyMove();
-      return;
-    }
+    setTimeout(() => {
+      const attack = playerEnemy.computerAttack(playerUser);
+      setOwnBoard(playerUser.gameboard.getGameboard());
+      if (playerUser.hasLost()) {
+        setWinner('Enemy won!');
+        return;
+      }
+      if (attack) {
+        enemyMove();
+        return;
+      }
+    }, 200);
   };
 
   const playerMove = (e) => {
@@ -74,7 +76,6 @@ const Game = () => {
 
     const attack = playerUser.attack(playerEnemy, x, y);
     setEnemyBoard(playerEnemy.gameboard.getAttackboard());
-    console.log(enemyBoard);
     if (playerEnemy.hasLost()) {
       setWinner('You won!');
       return;

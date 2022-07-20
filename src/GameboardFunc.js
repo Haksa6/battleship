@@ -63,7 +63,7 @@ export const Gameboard = () => {
   const checkMovedShip = (ship, row, col) => {};
 
   const moveShip = (ship, row, col) => {
-    console.log(row, col);
+    console.log('Moved ship to', row, col);
     const newShip = Ship(
       row,
       col,
@@ -71,8 +71,8 @@ export const Gameboard = () => {
       ship.getDirection(),
       ship.getShipID()
     );
-    if (checkPlacement(newShip)) {
-      placeShip(newShip);
+    if (checkPlacement(newShip, gameboard)) {
+      placeShip(newShip, gameboard);
       return newShip;
     }
     return undefined;
@@ -81,8 +81,7 @@ export const Gameboard = () => {
   const receiveAttack = (row, col) => {
     if (gameboard[row][col] !== 'Ship') {
       gameboard[row][col] = 'Mark';
-      console.log(row, col);
-      return true;
+      return 'miss';
     }
 
     let shipFound;
@@ -100,10 +99,10 @@ export const Gameboard = () => {
       shipFound.hit();
       if (shipFound.isSunk()) {
         gameboard[row][col] = 'X';
-        return false;
+        return 'sunk';
       }
       gameboard[row][col] = 'X';
-      return false;
+      return 'hit';
     }
   };
 

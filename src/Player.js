@@ -1,5 +1,5 @@
 import { Gameboard } from './GameboardFunc';
-import { randomInt } from './helpers';
+import { makeAIMove, makeBoard, randomInt } from './helpers';
 
 const Player = (side) => {
   const gameboard = Gameboard();
@@ -11,15 +11,23 @@ const Player = (side) => {
 
   const attack = (player, row, col) => {
     const result = player.gameboard.receiveAttack(row, col);
-    return result !== true;
+    return result !== 'miss';
   };
 
-  const computerAttack = (player) => {
-    console.log(player.gameboard.getGameboard());
-    const row = randomInt();
-    const col = randomInt();
-    const result = player.gameboard.receiveAttack(row, col);
-    return result !== true;
+  const computerAttack = (opponent) => {
+    const board = opponent.gameboard.getAttackboard();
+    const coords = makeAIMove(board);
+
+    console.log(coords);
+    const result = opponent.gameboard.receiveAttack(coords.row, coords.col);
+    if (result === 'hit') {
+      return true;
+    }
+    if (result === 'sunk') {
+      return true;
+    }
+
+    return false;
   };
 
   const getSide = () => side;

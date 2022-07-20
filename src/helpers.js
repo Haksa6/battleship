@@ -12,9 +12,27 @@ const makeBoard = () => {
   return newBoard;
 };
 //
-const makeAIMove = () => {};
+
+const makeAIMove = (board) => {
+  const cellCoords = [];
+
+  for (let row = 0; row < BOARD_SIZE; row++) {
+    for (let col = 0; col < BOARD_SIZE; col++) {
+      if (board[row][col] === '') {
+        cellCoords.push({ row, col });
+      }
+    }
+  }
+
+  return cellCoords[randomBigInt(cellCoords.length)];
+};
+//Function for bigger size as well
+const randomBigInt = (length) => {
+  return Math.floor(Math.random() * length);
+};
 
 // Get random number
+
 const randomInt = () => {
   return Math.floor(Math.random() * BOARD_SIZE);
 };
