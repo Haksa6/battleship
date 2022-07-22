@@ -2,7 +2,7 @@
 
 Battleship project done with react
 
-[Live app]
+[Live app](https://jocular-khapse-896f1e.netlify.app)
 
 ![Screenshot](battleship.png)
 
