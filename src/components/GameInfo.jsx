@@ -1,10 +1,19 @@
 import React from 'react';
 
-const GameInfo = ({ winner, handleRandomize, gameState, setGameState }) => {
+const GameInfo = ({
+  winner,
+  handleRandomize,
+  gameState,
+  setGameState,
+  newGame,
+}) => {
   const handlePlay = () => {
     if (gameState === 'placement') {
       setGameState('ready');
-    } else setGameState('placement');
+    } else {
+      setGameState('placement');
+      newGame();
+    }
   };
 
   return (

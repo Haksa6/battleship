@@ -37,14 +37,8 @@ const randomInt = () => {
   return Math.floor(Math.random() * BOARD_SIZE);
 };
 
-const checkAdjacentCell = (
-  size,
-  row,
-  col,
-  direction,
-  gameboard,
-  withship = true
-) => {
+const checkAdjacentCell = (size, row, col, direction, gameboard) => {
+  //Check that the boord coords are not undefined
   const isUndefined = (arr, index1, index2) => {
     try {
       return arr[index1][index2] === undefined;
@@ -62,18 +56,15 @@ const checkAdjacentCell = (
     }
 
     for (let i = col; i < col + size; i++) {
-      console.log('horizontal', i, row, 'size', size);
       if (!isUndefined(gameboard, row - 1, i)) {
         if (gameboard[row - 1][i] === 'Ship') {
           return false;
         }
       }
 
-      if (withship) {
-        if (!isUndefined(gameboard, row, i)) {
-          if (gameboard[row][i] === 'Ship') {
-            return false;
-          }
+      if (!isUndefined(gameboard, row, i)) {
+        if (gameboard[row][i] === 'Ship') {
+          return false;
         }
       }
 
@@ -104,19 +95,15 @@ const checkAdjacentCell = (
     }
 
     for (let i = row; i < row + size; i++) {
-      console.log('vertical', i, col, 'size', size);
-
       if (!isUndefined(gameboard, i, col - 1)) {
         if (gameboard[i][col - 1] === 'Ship') {
           return false;
         }
       }
 
-      if (withship) {
-        if (!isUndefined(gameboard, i, col)) {
-          if (gameboard[i][col] === 'Ship') {
-            return false;
-          }
+      if (!isUndefined(gameboard, i, col)) {
+        if (gameboard[i][col] === 'Ship') {
+          return false;
         }
       }
 

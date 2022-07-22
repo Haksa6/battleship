@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Player from '../Player';
-
 import GameInfo from './GameInfo';
 import OwnBoard from './OwnBoard';
 import EnemyBoard from './Enemyboard';
+import { checkPlacement } from '../helpers';
+
+//Create players
 let playerUser = Player('user');
 let playerEnemy = Player('enemy');
 
@@ -29,6 +31,8 @@ const Game = () => {
         ...ship,
       }))
     );
+    setWinner(null);
+    setGameState('placement');
   };
 
   const handleRandomize = () => {
@@ -56,21 +60,20 @@ const Game = () => {
   };
 
   const enemyMove = () => {
-    setTimeout(() => {
-      const attack = playerEnemy.computerAttack(playerUser);
-      setOwnBoard(playerUser.gameboard.getGameboard());
-      if (playerUser.hasLost()) {
-        setWinner('Enemy won!');
-        return;
-      }
-      if (attack) {
-        enemyMove();
-        return;
-      }
-    }, 200);
+    const attack = playerEnemy.computerAttack(playerUser);
+    setOwnBoard(playerUser.gameboard.getGameboard());
+    if (playerUser.hasLost()) {
+      setWinner('Enemy won!');
+      return;
+    }
+    if (attack) {
+      enemyMove();
+      return;
+    }
   };
 
   const playerMove = (e) => {
+    //Get coords
     const x = e.target.dataset.coord.split(',')[0];
     const y = e.target.dataset.coord.split(',')[1];
 
@@ -94,6 +97,7 @@ const Game = () => {
         handleRandomize={handleRandomize}
         gameState={gameState}
         setGameState={setGameState}
+        newGame={placeShipsOnStart}
       />
       <div className="game-container-grids">
         <OwnBoard

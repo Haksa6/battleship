@@ -60,10 +60,12 @@ export const Gameboard = () => {
     placeShipsAtBoard();
   };
 
-  const checkMovedShip = (ship, row, col) => {};
+  //Remove current ships marks so it can placed next to the current ship
+  const checkMoveShip = (ship, row, col) => {
+    ship.coords.forEach((coords) => {
+      gameboard[coords.row][coords.col] = '';
+    });
 
-  const moveShip = (ship, row, col) => {
-    console.log('Moved ship to', row, col);
     const newShip = Ship(
       row,
       col,
@@ -72,7 +74,28 @@ export const Gameboard = () => {
       ship.getShipID()
     );
     if (checkPlacement(newShip, gameboard)) {
-      placeShip(newShip, gameboard);
+      return true;
+    }
+
+    ship.coords.forEach((coords) => {
+      gameboard[coords.row][coords.col] = 'S';
+    });
+    ships.push(ship);
+    return false;
+  };
+
+  const moveShip = (ship, row, col) => {
+    console.log('Moved ship to', row, col);
+
+    if (checkMoveShip(ship, row, col)) {
+      const newShip = Ship(
+        row,
+        col,
+        ship.getSize(),
+        ship.getDirection(),
+        ship.getShipID()
+      );
+      placeShip(newShip);
       return newShip;
     }
     return undefined;
@@ -115,5 +138,6 @@ export const Gameboard = () => {
     receiveAttack,
     getGameboard,
     getAttackboard,
+    placeShip,
   };
 };

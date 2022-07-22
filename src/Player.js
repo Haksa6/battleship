@@ -3,7 +3,6 @@ import { makeAIMove, makeBoard, randomInt } from './helpers';
 
 const Player = (side) => {
   const gameboard = Gameboard();
-  let hitsHistory = [];
 
   const hasLost = () => {
     return gameboard.getShips().every((ship) => ship.isSunk());

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './sass/main.scss';
 import Header from './components/Header';
 import Game from './components/Game';
