@@ -2,7 +2,7 @@
 
 Battleship project done with react
 
-[Live app]
+[Live app](https://haksa6.github.io/battleship/)
 
 ![Screenshot](battleship.png)
 
